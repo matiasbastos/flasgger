@@ -121,13 +121,17 @@ def _extract_definitions(alist, level=None, endpoint=None, verb=None):
     if alist is not None:
         for item in alist:
             schema = item.get("schema")
+            print schema
             if schema is not None:
                 schema_id = schema.get("id")
                 if schema_id is not None:
                     # add endpoint_verb to schema id to avoid conflicts
+                    """
                     schema['id'] = schema_id = "{}_{}_{}".format(endpoint,
                                                                  verb,
                                                                  schema_id)
+                    """
+                    schema['id'] = schema_id
                     defs.append(schema)
                     ref = {"$ref": "#/definitions/{}".format(schema_id)}
                     # only add the reference as a schema if we are in a
